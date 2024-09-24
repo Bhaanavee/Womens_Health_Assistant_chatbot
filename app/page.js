@@ -63,7 +63,7 @@ const AssistantMessage = styled(Box)(({ theme }) => ({
 }));
 
 const UserMessage = styled(Box)(({ theme }) => ({
-  backgroundColor: '#CE93D8', // Coral for user messages
+  backgroundColor: '#F3A4A4', // Coral for user messages
   color: '#FFFFFF',
   borderRadius: '16px',
   padding: '12px 16px',
@@ -173,7 +173,7 @@ export default function Home() {
               aria-label={`${msg.role === 'assistant' ? 'Assistant' : 'You'} message`}
             >
               {msg.role === 'assistant' && (
-                <Avatar sx={{ bgcolor: '#FF6F61', marginRight: '8px', width: 24, height: 24 }}>A</Avatar>
+                <Avatar sx={{ bgcolor: '#F29898', marginRight: '8px', width: 24, height: 24 }}>A</Avatar>
               )}
               {msg.role === 'assistant' ? (
                 <AssistantMessage>
@@ -247,9 +247,9 @@ export default function Home() {
             disabled={isLoading}
             sx={{
               color: '#ffffff',
-              bgcolor: '#FF6F61', // Coral button background
+              bgcolor: '#F08080', // Coral button background
               '&:hover': {
-                backgroundColor: '#EAB8E4',
+                backgroundColor: '#F3A4A4',
               },
               transition: 'all 0.2s ease',
               padding: '10px 20px',

@@ -1,10 +1,12 @@
 'use client';
 
-import { Box, Button, CircularProgress, Stack, TextField, Typography, Avatar } from '@mui/material';
+import { Box, Button, CircularProgress, Stack, TextField, Typography, Avatar, IconButton } from '@mui/material';
 import { useState, useRef, useEffect } from 'react';
 import { onAuthStateChanged, signOut } from 'firebase/auth';
 import { auth } from '../firebase.js';
 import { styled } from '@mui/system';
+import ContentCopyIcon from '@mui/icons-material/ContentCopy';
+
 
 // Styled Components
 const ChatContainer = styled(Box)(({ theme }) => ({
@@ -59,8 +61,10 @@ const AssistantMessage = styled(Box)(({ theme }) => ({
   boxShadow: '0px 2px 8px rgba(0, 0, 0, 0.15)', // Softer shadow
   maxWidth: '80%',
   display: 'flex',
-  alignItems: 'flex-start',
+  alignItems: 'center', // Center items vertically
+  position: 'relative', // Allow for absolute positioning of the icon
 }));
+
 
 const UserMessage = styled(Box)(({ theme }) => ({
   backgroundColor: '#F3A4A4', // Coral for user messages
@@ -156,11 +160,20 @@ export default function Home() {
     scrollToBottom();
   }, [messages]);
 
+  const copyToClipboard = (text) => {
+    navigator.clipboard.writeText(text).then(() => {
+      alert("Copied to clipboard!");
+    }).catch(err => {
+      console.error('Failed to copy: ', err);
+    });
+  };
+
+
   return (
     <ChatContainer>
       <Header>
         <Typography variant="h5" sx={{ color: 'white', marginBottom: '0px' }}>
-          DOCBOT
+          MAYA
         </Typography>
       </Header>
 
@@ -183,6 +196,16 @@ export default function Home() {
                       <p key={index} style={{ marginBottom: '20px' }}>{paragraph}</p>
                     ))}
                   </Typography>
+                  {index !== 0 && ( // Check if it's not the first message
+                  <IconButton
+                  size="small"
+                  sx={{ position: 'absolute', top: '10px', right: '10px', color: '#666666' }}
+                  onClick={() => copyToClipboard(msg.content)}
+                  aria-label="Copy message"
+                  >
+                  <ContentCopyIcon fontSize="small" />
+                  </IconButton>
+                  )}
                 </AssistantMessage>
               ) : (
                 <UserMessage>

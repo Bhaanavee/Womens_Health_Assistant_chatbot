@@ -2,8 +2,6 @@
 
 import { Box, Button, CircularProgress, Stack, TextField, Typography, Avatar, IconButton } from '@mui/material';
 import { useState, useRef, useEffect } from 'react';
-import { onAuthStateChanged, signOut } from 'firebase/auth';
-import { auth } from '../firebase.js';
 import { styled } from '@mui/system';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 
@@ -41,10 +39,32 @@ const ChatBox = styled(Stack)(({ theme }) => ({
   overflow: 'auto',
   padding: '20px',
   spacing: 3,
-  backgroundColor: ' #F5F5F5', 
+  backgroundColor: '#F5F5F5',
   borderRadius: '12px',
   boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.15)', // Softer shadow
+  // Scrollbar styles
+  '&::-webkit-scrollbar': {
+    width: '6px', // Width of the scrollbar
+  },
+  '&::-webkit-scrollbar-track': {
+    background: '#FEE3E3', // Light Pink for the scrollbar track
+  },
+  '&::-webkit-scrollbar-thumb': {
+    backgroundColor: 'rgba(128, 128, 128, 0.7)', // Slightly transparent grey for the thumb
+    borderRadius: '10px',
+  },
+  '&::-moz-scrollbar': {
+    width: '8px',
+  },
+  '&::-moz-scrollbar-track': {
+    background: '#FEE3E3', // Light Pink for the scrollbar track
+  },
+  '&::-moz-scrollbar-thumb': {
+    backgroundColor: 'rgba(128, 128, 128, 0.7)', // Slightly transparent grey for the thumb
+    borderRadius: '10px',
+  },
 }));
+
 
 const MessageContainer = styled(Box)(({ theme }) => ({
   display: 'flex',

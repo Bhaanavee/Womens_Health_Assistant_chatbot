@@ -192,7 +192,7 @@ export default function Home() {
   return (
     <ChatContainer>
       <Header>
-        <Typography variant="h5" sx={{ color: 'white', marginBottom: '0px' }}>
+        <Typography variant="h5" sx={{ color: 'white', marginBottom: '0px', fontWeight: 700 }}>
           MAYA
         </Typography>
       </Header>
